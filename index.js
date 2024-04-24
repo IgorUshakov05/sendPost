@@ -12,11 +12,13 @@ let html = `<!DOCTYPE html>
 
         body {
             margin: 0;
+            
             padding: 0;
             font-family: "Raleway", sans-serif;
         }
         .body {
             border-radius: 20px;
+            background: white;
             width: 90%;
             border: 1px solid black;
             margin: auto;
@@ -90,9 +92,15 @@ let html = `<!DOCTYPE html>
           padding: 0;
           margin-bottom: 0;
         }
+        .w100 {
+          width: 100% !important;
+        }
         @media (max-width: 700px) {
           .code {
             width: 100%;
+          }
+          .body {
+            padding: 14px;
           }
           .ml {
             display: none;
@@ -110,15 +118,13 @@ let html = `<!DOCTYPE html>
     </header>
     <h1>Подтверждение регистрации</h1>
     <p>Здравствуйте, Ярослав</p>
-    <p class="m23">Спасибо за регистрацию на нашем сайте. Для завершения процесса необходимо подтвердить вашу почту. Пожалуйста, введите следующий код на сайте:</p>
+    <p class="m23">Спасибо за регистрацию на нашем сайте. Для завершения процесса необходимо подтвердить вашу почту.</p>
+    <p>Пожалуйста, введите следующий код на сайте:</p>
     <div class="twoBlocks">
-        <div class="block code">217322</div>
-        <div class="block ml">
-            <img src="cid:row" height="40">    
-        </div>
+        <div class="block code w100">217322</div>
     </div>
-    <div class="twoBlocks">
-        <div>
+    <div class="twoBlocks w100">
+        <div class="w100">
             <p class="p0">С уважением,</p>
             <p class="p0">Команда поддержки WebHunt</p>
         </div>
@@ -141,7 +147,7 @@ async function main() {
     secure: true, // Usually true if connecting to port 465
     auth: {
       user: "igorushakov111@gmail.com", // Your email address
-      pass: "*** *** ***", // Password (for gmail, your app password)
+      pass: "***", // Password (for gmail, your app password)
       // ⚠️ For better security, use environment variables set on the server for these values when deploying
     },
   });
@@ -149,7 +155,7 @@ async function main() {
   // Define and send message inside transporter.sendEmail() and await info about send from promise:
   let info = await transporter.sendMail({
     from: '"WebHunt" <igorushakov111@gmail.com>',
-    to: "yaroslavushakov15@gmail.com",
+    to: "yaroslawork16@gmail.com",
     subject: "Подтвердите регистрацию аккаунта",
     html,
     attachments: [
@@ -158,11 +164,6 @@ async function main() {
           path: './assets/logo.png',
           cid: 'logo' // уникальный идентификатор для изображения
       },
-      {
-        filename: 'image2.png',
-        path: './assets/row.png',
-        cid: 'row' // уникальный идентификатор для изображения
-    },
     {
       filename: 'image3.png',
       path: './assets/vk.png',
